@@ -2,7 +2,8 @@
 	"compilerOptions": {
 		"rootDir": "./",
 		"paths": {
-			"@src/*": ["./src/*"]
+			"@src/*": ["./src/*"],
+			"@tests/*": ["./tests/*"]
 		},
 
 		"target": "es2016",

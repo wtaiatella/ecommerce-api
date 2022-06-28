@@ -1,22 +1,18 @@
-import { database } from "@src/adapters/database";
+import { database } from '@src/adapters/database';
+import productService, { ProductProps } from '@src/services/productService';
 
 interface CategoryInput {
-  name: string;
+	name: string;
 }
 export const createCategory = async (params: CategoryInput) => {
-  const { name } = params;
-  const data = { name };
+	const { name } = params;
+	const data = { name };
 
-  return database.category.create({ data });
+	return database.category.create({ data });
 };
 
-interface ProductInput {
-  name: string;
-  categoryId: string;
-}
-export const createProduct = async (params: ProductInput) => {
-  const { name, categoryId } = params;
-  const data = { name, categoryId };
+export const createProduct = async (params: ProductProps) => {
+	const { name, categoryId } = params;
 
-  return database.product.create({ data });
+	return productService.create({ name, categoryId });
 };

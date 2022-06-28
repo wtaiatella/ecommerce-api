@@ -19,7 +19,11 @@ model Category {
 model Product {
 	id String @default(cuid()) @id
 	name String
+	slug String @default("") @unique
 	price Float @default(0.0)
+	priceWithDiscount Float @default(0.0) 
+	headline String @default("")
+	description String @default("")
 	category Category @relation(fields: [categoryId], references: [id])
 	categoryId String
 }

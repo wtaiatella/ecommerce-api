@@ -11,6 +11,7 @@ describe('Categories', () => {
 			await createCategory({ name: 'Hardware' });
 		});
 
+
 		afterAll(async () => {
 			await clearTables();
 		});

@@ -1,5 +1,6 @@
 import 'dotenv/config';
 
+
 import express from 'express';
 import { Request, Response } from 'express';
 
@@ -10,8 +11,10 @@ import { find } from '@src/services/categoryService';
 import categoryService from '@src/services/categoryService';
 import productService from '@src/services/productService';
 
+
 console.log(process.env.AWARI);
 const app = express();
+
 
 app.get('/categories', async (req: Request, res: Response) => {
 	const categories = await find();
@@ -42,6 +45,24 @@ app.get('/products/:id', async (req: Request, res: Response) => {
 	logger.info({ product });
 
 	res.json(product);
+
+});
+
+app.get("/categories/:id/products", async (req: Request, res: Response) => {
+  const categoryId = req.params.id;
+  logger.debug(`categoryId = ${categoryId}`);
+  const products = await productService.find(categoryId);
+  res.json(products);
+});
+
+app.get("/products/:id", async (req: Request, res: Response) => {
+  const productId = req.params.id;
+  logger.info({ productId });
+
+  const product = await productService.findOne(productId);
+  logger.info({ product });
+
+  res.json(product);
 });
 
 export default app;
